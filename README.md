@@ -12,6 +12,12 @@ https://user-images.githubusercontent.com/13444013/193433835-df0e2f46-0b79-4e72-
 
 See how the system looks with Hyrland:
 
+
+
+https://user-images.githubusercontent.com/13444013/195480485-f5283ed2-cf04-48f3-9431-e1de80d5131a.mp4
+
+
+
 ![Arch-Hyprland-23_09_2022](https://user-images.githubusercontent.com/13444013/192105792-a09413e3-8a68-476a-aed1-34b7db63b676.png)
 
 Overview
