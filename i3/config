@@ -1,0 +1,356 @@
+## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
+##  Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
+##
+## i3wm configuration for Archcraft
+
+##-- Mod Keys ----------------------------
+set $mod Mod4
+set $alt Mod1
+
+##-- Fonts (Global) ----------------------
+font pango:JetBrains Mono Regular 11
+
+##-- Gaps --------------------------------
+
+# Title bar text alignment
+title_align center
+
+# Uncomment this to enable title bars
+#for_window [class=".*"] border normal 4
+
+# Uncomment this to disable title bars
+for_window [class=".*"] border pixel 0
+
+# Gaps (Outer gaps are added to the inner gaps)
+gaps inner 10
+
+# Only enable gaps on a workspace when there is at least one container
+#smart_gaps on
+
+# Activate smart borders (always)
+smart_borders on
+
+##-- Colors ------------------------------
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #11111b #11111b #e4e8f5 #11111b   #11111b
+client.focused_inactive #11111b #11111b #e4e8f5 #11111b   #11111b
+client.unfocused        #11111b #11111b #e4e8f5 #11111b   #11111b
+client.urgent           #11111b #11111b #e4e8f5 #11111b   #11111b
+client.placeholder      #1E222A #1E222A #FFFFFF #32CFAC   #1E222A
+
+client.background       #181825
+
+##-- Autostart ---------------------------
+
+exec_always --no-startup-id 	~/.config/i3/bin/autostart.sh
+exec_always --no-startup-id nitrogen --restore
+
+##-- Key Bindings ------------------------
+
+# -- Terminal --
+bindsym $mod+Return 			exec --no-startup-id kitty
+bindsym $mod+mod2+KP_Enter 		exec --no-startup-id kitty
+bindsym $mod+Shift+Return 		exec --no-startup-id ~/.config/i3/bin/i3term.sh --float
+bindsym $mod+t 				exec --no-startup-id ~/.config/i3/bin/i3term.sh --full
+
+# -- Apps --
+bindsym $mod+f 				exec --no-startup-id thunar
+bindsym $mod+e 				exec --no-startup-id mailspring
+bindsym $mod+w 				exec --no-startup-id microsoft-edge-stable
+bindsym $mod+g				exec --no-startup-id geany
+bindsym $mod+o 				exec --no-startup-id firefox
+bindsym $mod+k 				exec --no-startup-id "galculator"
+bindsym $mod+s 				exec --no-startup-id "steam"
+
+bindsym $alt+Control+v 			exec --no-startup-id "kitty -e vim"
+bindsym $alt+Control+r 			exec --no-startup-id "kitty -e ranger"
+bindsym $alt+Control+t 			exec --no-startup-id "kitty -e htop"
+bindsym $alt+control+m 			exec --no-startup-id "kitty -e micro"
+bindsym $alt+control+w                  exec --no-startup-id "whatsapp-for-linux"
+bindsym $alt+control+g                  exec --no-startup-id "gimp-2.10"
+
+
+# -- Rofi --
+bindsym $alt+F1 			exec --no-startup-id ~/.config/i3/rofi/bin/launcher
+bindsym $alt+F2                         exec --no-startup-id ~/.config/i3/rofi/bin/rofi-edit
+bindsym $alt+F3			        exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+bindsym $alt+F5 			exec --no-startup-id ~/.config/i3/rofi/bin/rofi-beats-linux
+bindsym $mod+n 				exec --no-startup-id ~/.config/i3/rofi/bin/network_menu
+bindsym $mod+x 				exec --no-startup-id ~/.config/i3/rofi/bin/powermenu
+bindsym $mod+m 				exec --no-startup-id ~/.config/i3/rofi/bin/mpd
+bindsym $mod+i 				exec --no-startup-id ~/.config/i3/rofi/bin/screenshot
+bindsym $mod+r 				exec --no-startup-id ~/.config/i3/rofi/bin/asroot
+bindsym $mod+z 				exec --no-startup-id ~/.config/i3/rofi/bin/windows
+
+# -- Function keys --
+bindsym XF86MonBrightnessUp 	        exec --no-startup-id "~/.config/i3/bin/i3brightness.sh --inc"
+bindsym XF86MonBrightnessDown 	        exec --no-startup-id "~/.config/i3/bin/i3brightness.sh --dec"
+bindsym XF86AudioRaiseVolume 	        exec --no-startup-id "~/.config/i3/bin/i3volume.sh --inc"
+bindsym XF86AudioLowerVolume 	        exec --no-startup-id "~/.config/i3/bin/i3volume.sh --dec"
+bindsym XF86AudioMute 			exec --no-startup-id "~/.config/i3/bin/i3volume.sh --toggle"
+bindsym XF86AudioMicMute 		exec --no-startup-id "~/.config/i3/bin/i3volume.sh --toggle-mic"
+bindsym XF86AudioNext 			exec --no-startup-id "mpc next"
+bindsym XF86AudioPrev 			exec --no-startup-id "mpc prev"
+bindsym XF86AudioPlay 			exec --no-startup-id "mpc toggle"
+bindsym XF86AudioStop 			exec --no-startup-id "mpc stop"
+bindsym XF86TouchpadToggle              exec --no-startup-id ~/.config/i3/bin/touchpad-on_off.sh devonoff
+
+# -- Screenshots --
+bindsym Print 				exec --no-startup-id "takeshot --now"
+bindsym $mod+Print 			exec --no-startup-id "takeshot --in5"
+bindsym Shift+Print 			exec --no-startup-id "takeshot --in10"
+bindsym Control+Print 			exec --no-startup-id "takeshot --win"
+bindsym $mod+Control+Print 		exec --no-startup-id "takeshot --area"
+
+# -- i3wm --
+
+# Lockscreen
+bindsym $alt+Control+l 			exec --no-startup-id "betterlockscreen --lock"
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+q kill
+
+
+# change focus use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+shift+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+Shift+z layout stacking
+bindsym $mod+Shift+x layout tabbed
+bindsym $mod+Shift+c layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+Shift+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+d focus child
+
+# switch/iterate between workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+##-- Workspaces ---------------------
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+mod2+KP_1 workspace $ws1
+bindsym $mod+mod2+KP_2 workspace $ws2
+bindsym $mod+mod2+KP_3 workspace $ws3
+bindsym $mod+mod2+KP_4 workspace $ws4
+bindsym $mod+mod2+KP_5 workspace $ws5
+bindsym $mod+mod2+KP_6 workspace $ws6
+bindsym $mod+mod2+KP_7 workspace $ws7
+bindsym $mod+mod2+KP_8 workspace $ws8
+bindsym $mod+mod2+KP_9 workspace $ws9
+bindsym $mod+mod2+KP_0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+bindsym $mod+mod2+Shift+KP_End move container to workspace   $ws1
+bindsym $mod+mod2+Shift+KP_Down move container to workspace  $ws2
+bindsym $mod+mod2+Shift+KP_Next move container to workspace  $ws3
+bindsym $mod+mod2+Shift+KP_Left move container to workspace  $ws4
+bindsym $mod+mod2+Shift+KP_Begin move container to workspace $ws5
+bindsym $mod+mod2+Shift+KP_Right move container to workspace $ws6
+bindsym $mod+mod2+Shift+KP_Home move container to workspace  $ws7
+bindsym $mod+mod2+Shift+KP_Up move container to workspace    $ws8
+bindsym $mod+mod2+Shift+KP_Prior move container to workspace $ws9
+bindsym $mod+mod2+Shift+KP_Insert move container to workspace $ws10
+
+# reload the configuration file
+bindsym Control+$alt+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym Control+Shift+r restart
+# quit i3 session
+bindsym Control+Shift+q exit
+
+##-- Resize / Move / Gaps ------------------------
+
+# resize window (you can also use the mouse for that)
+mode "Resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+Shift+r mode "Resize"
+
+mode "Move" {
+        # These bindings trigger as soon as you enter the Move mode
+
+        bindsym Left move left 20px
+        bindsym Down move down  20px
+        bindsym Up move up 20px
+        bindsym Right move right 20px
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+m mode "default"
+}
+bindsym $mod+Shift+m mode "Move"
+
+set $mode_gaps Gaps: (o)uter, (i)nner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus ++-- gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+##-- Workspace Rules ------------------------
+
+assign [class="Microsoft-edge|firefox"] 2
+assign [class="Thunar"] 3
+assign [class="Mailspring"] 4
+assign [class="Geany|DesktopEditors"] 5
+assign [class="Lxappearance|Nitrogen"] 6
+assign [class="Pavucontrol|Xfce4-power-manager-settings"] 6
+assign [class="Steam|Lutris"] 7
+assign [class="Whatsapp-for-linux|TelegramDesktop"] 8
+assign [class="Gimp"] 9
+
+##--Aautomatic set focus for new Windows ------------
+
+for_window [class=Microsoft-edge|firefox] focus
+for_window [class=Thunar|Geany] focus
+for_window [class=Mailspring] focus
+for_window [class=Whatsapp-for-linux|Pavucontrol|Xfce4-power-manager-settings] focus
+for_window [class=Lxappearance|Nitrogen|Lutris] focus
+for_window [class="kitty-float"] focus
+for_window [class=Gimp|Steam] focus
+
+
+##-- Window Rules ------------------------
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [class="kitty-float|xdman-Main"] floating enable
+for_window [class="Galculator"] floating enable resize set 500 650
+for_window [class="Pcmanfm|Onboard|Yad|Gpick"] floating enable
+for_window [class="Lxappearance|Nitrogen|Whatsapp-for-linux|TelegramDesktop"] floating enable
+for_window [class="Pavucontrol|Xfce4-power-manager-settings|Nm-connection-editor"] floating enable
+for_window [class="feh|Viewnior|Gpicview|Gimp|MPlayer"] floating enable
+for_window [class="Kvantum Manager|qt5ct"] floating enable
+for_window [class="VirtualBox Manager|qemu|Qemu-system-x86_64"] floating enable
+
+
+###---Otros AutoStart------
+
+# turn touchpad on/off
+#bindsym $mod+F10 exec --no-startup-id ~/.config/i3/bin/touchpad-on_off.sh devonoff
+#bindsym $mod+shift+F10 exec --no-startup-id ~/.config/i3/bin/touchpad-on_off.sh taponoff
+# turn tapping of at i3 start
+#exec --no-startup-id ~/.config/i3/bin/touchpad-on_off.sh taponoff
+
+exec_always --no-startup-id autotiling 
+#exec_always --no-startup-id greenclip daemon>dev/null
+#exec_always --no-startup-id greenclip daemon
+
+####-----BetterLockScreen------------
+# set desktop background with custom effect
+#exec --no-startup-id betterlockscreen -w dim
+
+# Alternative (set last used background)
+#exec --no-startup-id source ~/.fehbg
+
+

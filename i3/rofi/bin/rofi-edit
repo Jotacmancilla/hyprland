@@ -1,0 +1,70 @@
+#!/bin/bash
+
+myTerm=alacritty
+myEdit=micro
+
+menu(){
+	printf "1. alacritty\n"
+	printf "2. i3WM\n"
+	printf "3. polybar\n"
+	printf "4. picom\n"
+	printf "5. alacritty-colors\n"
+	printf "6. alacritty-fonts\n"
+	printf "7. polybar-modules\n"
+	printf "8. polybar-colors\n"
+	printf "9. polybar-system\n"
+	printf "10. polybar-decor\n"
+	printf "11. rofi-edit\n"
+	printf "12. zshrc\n"
+	printf "13. ranger\n"
+}
+
+main(){
+    choice=$(menu | rofi -dmenu | cut -d. -f1)
+
+	case $choice in
+		1)
+			$myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/i3/alacritty/alacritty.yml"
+            ;;
+		2)
+			$myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/i3/config"
+            ;;
+		3)
+			$myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/i3/polybar/config"
+            ;;
+		4)
+           	$myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/i3/picom.conf"
+            ;;
+		5)
+            $myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/i3/alacritty/colors.yml"
+            ;;
+		6)
+            $myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/i3/alacritty/fonts.yml"
+            ;;
+		7)
+           	$myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/i3/polybar/modules"
+            ;;
+		8)
+            $myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/i3/polybar/colors"
+            ;;
+		9)
+           	$myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/i3/polybar/system"
+            ;;
+        10)
+             $myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/i3/polybar/decor"    
+			;;
+		11)
+            $myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/i3/rofi/bin/rofi-edit"
+            ;;
+		12)
+            $myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.zshrc"
+            ;;
+		13)
+            $myTerm -e sh -c "sleep 0.2 ; $myEdit $HOME/.config/ranger/rc.conf"
+            ;;
+
+        esac
+}
+
+main
+
