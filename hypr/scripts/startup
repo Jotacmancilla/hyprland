@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+## Autostart Programs
+DIR=/home/juancarlos/Imágenes/Walls/
+PICS=($(ls ${DIR}))
+
+RANDOMPICS=${PICS[ $RANDOM % ${#PICS[@]} ]}
+
+# Kill already running process
+_ps=(waybar mako mpd xfce-polkit swaybg)
+for _prs in "${_ps[@]}"; do
+	if [[ `pidof ${_prs}` ]]; then
+		killall -9 ${_prs}
+	fi
+done
+
+# Polkit agent
+/usr/lib/xfce-polkit/xfce-polkit &
+
+# Set wallpaper
+swaybg --output '*' --mode fill -i ${DIR}/${RANDOMPICS} &
+
+# Apply themes
+~/.config/hypr/scripts/gtkthemes &
+
+# Lauch notification daemon (mako)
+~/.config/hypr/scripts/notifications &
+
+# Lauch statusbar (waybar)
+~/.config/hypr/scripts/statusbar &
+
+# Auto inicio de programas 
+
+# Start mpd
+# exec mpd &
+
+#Start mailspring
+# exec mailspring -S &
+
+#Start whatsapp-for-linux
+# exec whatsapp-for-linux -S &
+
+#Start steam
+# exec steam -S &
